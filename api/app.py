@@ -26,8 +26,9 @@ def login():
 @app.route("/ping", methods=["POST"])
 def ping():
     host = request.json.get("host", "")
-    cmd = f"ping -c 1 {host}"
-    output = subprocess.check_output(cmd, shell=False)
+    # cmd = f"ping -c 1 {host}"
+    cmd = ["ping" , "-c" , "1" , host ]
+    output = subprocess.check_output(cmd)
     return {"output": output.decode()}
 @app.route("/compute", methods=["POST"])
 def compute():
